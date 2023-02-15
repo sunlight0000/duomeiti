@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.entity.Goods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="fid" jdbcType="INTEGER" property="fid" />
+    <result column="img" jdbcType="VARCHAR" property="img" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="ctype" jdbcType="VARCHAR" property="ctype" />
+    <result column="pubtime" jdbcType="VARCHAR" property="pubtime" />
+    <result column="iscommend" jdbcType="VARCHAR" property="iscommend" />
+    <result column="uid" jdbcType="VARCHAR" property="uid" />
+    <result column="btype" jdbcType="VARCHAR" property="btype" />
+    <result column="upload" jdbcType="VARCHAR" property="upload" />
+    <result column="dnum" jdbcType="INTEGER" property="dnum" />
+    <result column="xnum" jdbcType="INTEGER" property="xnum" />
+    <result column="files" jdbcType="VARCHAR" property="files" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.entity.Goods">
+    <result column="note" jdbcType="LONGVARCHAR" property="note" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, fid, img, name, price, ctype, pubtime, iscommend, uid, btype, upload, dnum, xnum, 
+    files
+  </sql>
+  <sql id="Blob_Column_List">
+    note
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.Goods">
+    insert into goods (id, fid, img, 
+      name, price, ctype, 
+      pubtime, iscommend, uid, 
+      btype, upload, dnum, 
+      xnum, files, note
+      )
+    values (#{id,jdbcType=INTEGER}, #{fid,jdbcType=INTEGER}, #{img,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{ctype,jdbcType=VARCHAR}, 
+      #{pubtime,jdbcType=VARCHAR}, #{iscommend,jdbcType=VARCHAR}, #{uid,jdbcType=VARCHAR}, 
+      #{btype,jdbcType=VARCHAR}, #{upload,jdbcType=VARCHAR}, #{dnum,jdbcType=INTEGER}, 
+      #{xnum,jdbcType=INTEGER}, #{files,jdbcType=VARCHAR}, #{note,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.Goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fid != null">
+        fid,
+      </if>
+      <if test="img != null">
+        img,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="ctype != null">
+        ctype,
+      </if>
+      <if test="pubtime != null">
+        pubtime,
+      </if>
+      <if test="iscommend != null">
+        iscommend,
+      </if>
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="btype != null">
+        btype,
+      </if>
+      <if test="upload != null">
+        upload,
+      </if>
+      <if test="dnum != null">
+        dnum,
+      </if>
+      <if test="xnum != null">
+        xnum,
+      </if>
+      <if test="files != null">
+        files,
+      </if>
+      <if test="note != null">
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null">
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="ctype != null">
+        #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null">
+        #{pubtime,jdbcType=VARCHAR},
+      </if>
+      <if test="iscommend != null">
+        #{iscommend,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="btype != null">
+        #{btype,jdbcType=VARCHAR},
+      </if>
+      <if test="upload != null">
+        #{upload,jdbcType=VARCHAR},
+      </if>
+      <if test="dnum != null">
+        #{dnum,jdbcType=INTEGER},
+      </if>
+      <if test="xnum != null">
+        #{xnum,jdbcType=INTEGER},
+      </if>
+      <if test="files != null">
+        #{files,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        #{note,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.Goods">
+    update goods
+    <set>
+      <if test="fid != null">
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="img != null">
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="ctype != null">
+        ctype = #{ctype,jdbcType=VARCHAR},
+      </if>
+      <if test="pubtime != null">
+        pubtime = #{pubtime,jdbcType=VARCHAR},
+      </if>
+      <if test="iscommend != null">
+        iscommend = #{iscommend,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null">
+        uid = #{uid,jdbcType=VARCHAR},
+      </if>
+      <if test="btype != null">
+        btype = #{btype,jdbcType=VARCHAR},
+      </if>
+      <if test="upload != null">
+        upload = #{upload,jdbcType=VARCHAR},
+      </if>
+      <if test="dnum != null">
+        dnum = #{dnum,jdbcType=INTEGER},
+      </if>
+      <if test="xnum != null">
+        xnum = #{xnum,jdbcType=INTEGER},
+      </if>
+      <if test="files != null">
+        files = #{files,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null">
+        note = #{note,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.entity.Goods">
+    update goods
+    set fid = #{fid,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      ctype = #{ctype,jdbcType=VARCHAR},
+      pubtime = #{pubtime,jdbcType=VARCHAR},
+      iscommend = #{iscommend,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      btype = #{btype,jdbcType=VARCHAR},
+      upload = #{upload,jdbcType=VARCHAR},
+      dnum = #{dnum,jdbcType=INTEGER},
+      xnum = #{xnum,jdbcType=INTEGER},
+      files = #{files,jdbcType=VARCHAR},
+      note = #{note,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.Goods">
+    update goods
+    set fid = #{fid,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      ctype = #{ctype,jdbcType=VARCHAR},
+      pubtime = #{pubtime,jdbcType=VARCHAR},
+      iscommend = #{iscommend,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=VARCHAR},
+      btype = #{btype,jdbcType=VARCHAR},
+      upload = #{upload,jdbcType=VARCHAR},
+      dnum = #{dnum,jdbcType=INTEGER},
+      xnum = #{xnum,jdbcType=INTEGER},
+      files = #{files,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+	
+	<select id="getCount" parameterType="java.util.Map" resultType="int">
+		select count(*) from goods where 1=1
+		<if test="name!=null ">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="fid != null">
+			and fid = #{fid,jdbcType=VARCHAR}
+		</if>
+		<if test="iscommend != null">
+			and iscommend = #{iscommend,jdbcType=VARCHAR}
+		</if>
+		<if test="ctype != null">
+			and ctype like concat('%',#{ctype,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="uid != null">
+			and uid = #{uid,jdbcType=VARCHAR}
+		</if>
+		<if test="btype != null">
+			and btype = #{btype,jdbcType=VARCHAR}
+		</if>
+
+	</select>
+	<select id="getAll" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+
+		from goods where 1=1
+		<if test="name!=null ">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="fid != null">
+			and fid = #{fid,jdbcType=VARCHAR}
+		</if>
+		<if test="ctype != null">
+			and ctype like concat('%',#{ctype,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="iscommend != null">
+			and iscommend = #{iscommend,jdbcType=VARCHAR}
+		</if>
+		<if test="uid != null">
+			and uid = #{uid,jdbcType=VARCHAR}
+		</if>
+		<if test="btype != null">
+			and btype = #{btype,jdbcType=VARCHAR}
+		</if>
+		order by pubtime desc
+	</select>
+	<select id="getByPage" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		from goods where 1=1
+		<if test="name!=null ">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="iscommend != null">
+			and iscommend = #{iscommend,jdbcType=VARCHAR}
+		</if>
+		<if test="fid != null">
+			and fid = #{fid,jdbcType=VARCHAR}
+		</if>
+		<if test="ctype != null">
+			and ctype like concat('%',#{ctype,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="uid != null">
+			and uid = #{uid,jdbcType=VARCHAR}
+		</if>
+		<if test="btype != null">
+			and btype = #{btype,jdbcType=VARCHAR}
+		</if>
+		order by pubtime desc
+		<if test="pageno!=null and pageSize!=null">
+			limit #{pageno},#{pageSize}
+		</if>
+	</select>
+
+	<select id="getByPage2" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		from goods where 1=1
+		<if test="name!=null ">
+			and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="iscommend != null">
+			and iscommend = #{iscommend,jdbcType=VARCHAR}
+		</if>
+		<if test="fid != null">
+			and fid = #{fid,jdbcType=VARCHAR}
+		</if>
+		<if test="ctype != null">
+			and ctype like concat('%',#{ctype,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="uid != null">
+			and uid = #{uid,jdbcType=VARCHAR}
+		</if>
+		<if test="btype != null">
+			and btype = #{btype,jdbcType=VARCHAR}
+		</if>
+		order by xnum desc
+		<if test="pageno!=null and pageSize!=null">
+			limit #{pageno},#{pageSize}
+		</if>
+	</select>
+	<select id="getTop10" parameterType="java.util.Map" resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		from goods where 1=1
+		<if test="btype != null">
+			and btype = #{btype,jdbcType=VARCHAR}
+		</if>
+		<if test="iscommend != null">
+			and iscommend = #{iscommend,jdbcType=VARCHAR}
+		</if>
+		<if test="fid != null">
+			and fid = #{fid,jdbcType=VARCHAR}
+		</if>
+		<if test="ctype != null">
+			and ctype like concat('%',#{ctype,jdbcType=VARCHAR},'%')
+		</if>
+		order by dnum desc
+		limit 0,10
+	</select>
+</mapper>
