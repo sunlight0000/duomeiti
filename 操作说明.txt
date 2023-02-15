@@ -1,0 +1,23 @@
+
+http://localhost:8080/duomeiti/
+
+用户名：test  密码：123456
+
+
+
+http://localhost:8080/duomeiti/admin/
+
+
+后台管理员  admin  密码：123   
+
+ 
+
+
+在/duomeiti/src/applicationContext.xml中编辑
+<property name="url" value="jdbc:mysql://localhost:3306/duomeiti?useUnicode=true&amp;characterEncoding=utf-8"></property>
+   <property name="username" value="root"></property> 数据库用户名 root
+   <property name="password" value="123456"></property> 用户密码    123456
+   </bean>
+
+
+图片存放的路径 ：/duomeiti/WebRoot/upload
